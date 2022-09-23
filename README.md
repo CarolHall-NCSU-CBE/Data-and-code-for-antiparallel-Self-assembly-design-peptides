@@ -1,1 +1,1 @@
-# Data-and-code-for-antiparallel-Self-assembly-design-peptides
+# Data-and-code-for-antiparallel-self-assembly-design-peptides
