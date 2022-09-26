@@ -6,7 +6,7 @@ This repository contains the data and codes associated with the paper-Sequence P
 The source codes are in /code/. Compiler such as gfortran or ifort is required
 
 # Getting Started
-/code/: This directory contains the following files and directories
+/code/-This directory contains the following files and directories:
 1. main.f90-source code
 2. /lib/-This directory contains the forcefield and rotamer parameters of all the 20 natural amino acids
 3. comp.pdb-An example of the input PDB file needed to start the design
