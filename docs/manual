@@ -12,64 +12,28 @@ input.txt                  - contains the input parameters required to start the
 
 OUTPUT FILES:
 /pdbfiles/*.pdb            - output PDB files of PepAD generated peptide sequences will be stores in the pdbfiles folder
-energydetails.txt          - 
-energyprofile.txt-         
-minimum_energy.txt 
+energydetails.txt          - output file storing information of every attempt at each step and its corresponding peptide sequence; score; binding free energy component
+                           of score; entropy component of score; hydrophobicity component of the intrinsic aggregation propensity term,; the sum of alpha-helical propensity, 
+                           beta-sheet propensity, net charge and sequence pattern componenent of the intrinsic aggregation propensity term; and whether an exchange move or 
+                           mutation move was performed.
+energyprofile.txt          - output file storing information of the last attempt at each step and its corresponding score; binding free energy component
+                           of score; entropy component of score; hydrophobicity component of the intrinsic aggregation propensity term,; the sum of alpha-helical propensity, 
+                           beta-sheet propensity, net charge and sequence pattern componenent of the intrinsic aggregation propensity term
+minimum_energy.txt        - output file storing step number, attempt number, and score everytime the design algorithm reaches a new global minima in its score
 
 
 
 =======================================================================
-3. "input.in" file 
-WARNING: Keep all labels in the input.in file, 
-DO NOT change/add/delete labels in input.in file. 
-For example, leave the "Pressure [bar]" label even if the 
-ensemble is not NPT, the MC program will automatically skip this label.
-Variables required under each label are explained.
+3. "input.in" file
 =======================================================================
-Ensemble
-    'NVT' - canonical ensemble
-    'NPT' - isobaric-isothermal ensemble (current version only allows cubic box and there is no external structure in the box)
-    'uVT' - grand canonical ensemble
-
-Temperature [K]
-    temp - Temperature of the system.
-            Double precision.
-
-Pressure [bar]
-    press - Pressure of the system, only effective when
-            ensemble is "NPT". Double precision.
-
-Number of Boxes
-    n_box - In the current verison (v1.7), only one box is needed.
-            I haven't coded two box version for Gibbs ensemble yet.
-            Integer.
-
-Number of Molecule Types
-    n_mol_types - Integer.
-
-Maximum Number of Sites on the Molecule
-    n_sites_max - Integer.
-
-Number of Nonbonded Types
-    n_nonbond_types - Number of nonbonded interaction site types. 
-                      Used for cross check with mol.in file. Integer.
-
-Chemical Potential [K]
-    mu(molecule type 1) mu(molecule type 2) ...
-                    - Only effective when "uVT" ensemble. Double precision.
-
-Number of Molecules
-    n_mol(molecule type 1) n_mol(molecule type 2)...
-                    - Number of molecules for each molecule type. Integer.
-
-Potential Form
-    'Lennard-Jones' - 12-6 LJ nonbonded interactions, only this format
-                    has been coded for now.
-
-Mixing Rules
-    'Lorentz-Berthelot' - The cross-interaction term will be 
-                          automatically calculated.
-    'Explicit'          - Cross-interaction parameters should be 
-                          explicitly listed in mol.in file. I wrote this 
-                          for my conformal sites model project, especially for 
-                          Coulombic interactions.
+  filename (comp.pdb)      recalcu_switch (Equal to 0 if starting from initial PDB file, and equal to 1 if starting from another file)
+  
+  nstep_start (the starting step number)    nstep_terminal (the final step number)
+  
+  idum (seed for the ranmdom number)         ekt (a value determined empirically for each project, controls the likelihood of sequence change moves being accepted)
+  
+  fpho (no. of hydrophobic residues)  fpol (no. of polar residues)   fchg (no. of charged residues)   foth (no. of other residues)
+  
+  num4category (i=1 to n, sheetnumber for beta-sheet type structure)
+  
+  peptideID (i=1 to n, peptide ID for each peptide on sheet i)
