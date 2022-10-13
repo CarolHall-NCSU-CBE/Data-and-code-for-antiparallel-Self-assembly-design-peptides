@@ -1,0 +1,39 @@
+*********************************************
+Peptide Assembly Design code user guide
+Author: Sudeep Sarma (ssarma2@ncsu.edu)
+*********************************************
+
+=======================
+1. File types
+=======================
+REQUIRED INPUT FILES:
+comp.pdb                   - contains the PDB file of the intitial backbone scaffold of reference peptide
+input.txt                  - contains the input parameters required to start the design 
+
+OUTPUT FILES:
+/pdbfiles/*.pdb            - output PDB files of PepAD generated peptide sequences will be stores in the pdbfiles folder
+energydetails.txt          - output file storing information of every attempt at each step and its corresponding peptide sequence; score; binding free energy component
+                           of score; entropy component of score; hydrophobicity component of the intrinsic aggregation propensity term,; the sum of alpha-helical propensity, 
+                           beta-sheet propensity, net charge and sequence pattern componenent of the intrinsic aggregation propensity term; and whether an exchange move or 
+                           mutation move was performed.
+energyprofile.txt          - output file storing information of the last attempt at each step and its corresponding score; binding free energy component
+                           of score; entropy component of score; hydrophobicity component of the intrinsic aggregation propensity term,; the sum of alpha-helical propensity, 
+                           beta-sheet propensity, net charge and sequence pattern componenent of the intrinsic aggregation propensity term
+minimum_energy.txt        - output file storing step number, attempt number, and score everytime the design algorithm reaches a new global minima in its score
+
+
+
+=======================================================================
+3. "input.in" file
+=======================================================================
+  filename (comp.pdb)      recalcu_switch (Equal to 0 if starting from initial PDB file, and equal to 1 if starting from another file)
+  
+  nstep_start (the starting step number)    nstep_terminal (the final step number)
+  
+  idum (seed for the ranmdom number)         ekt (a value determined empirically for each project, controls the likelihood of sequence change moves being accepted)
+  
+  fpho (no. of hydrophobic residues)  fpol (no. of polar residues)   fchg (no. of charged residues)   foth (no. of other residues)
+  
+  num4category (i=1 to n, sheetnumber for beta-sheet type structure)
+  
+  peptideID (i=1 to n, peptide ID for each peptide on sheet i)
